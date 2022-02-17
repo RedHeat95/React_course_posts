@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./Image.module.css";
 
 export interface IImgProps {
@@ -7,9 +8,18 @@ export interface IImgProps {
 }
 
 export function Image({ url, title, onClick }: IImgProps) {
+  const [imgBig, setImgBig] = useState(false);
+
+  const imgBigest = () => {
+    setImgBig((imgBig) => !imgBig);
+  };
   return (
     <div className={styles.wrapper}>
-      <img className={styles.img} src={url} onClick={onClick} />
+      <img
+        className={imgBig ? styles.imgBig : styles.img}
+        src={url}
+        onClick={imgBigest}
+      />
       <p className={styles.title}>{title}</p>
     </div>
   );
